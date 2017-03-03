@@ -8,6 +8,8 @@
 
 * view other people's score by location in map
 
+* One-click to take screenshot and share it to firends
+
 The App made by Apple Xcode using swift 3.
 
 
