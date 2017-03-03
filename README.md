@@ -2,9 +2,11 @@
 
 **Flappy-One** is an iOS game app inspire by Flappy Bird and Nyancat.
 
-Player touch then screen to make Nyancat fly and avoid obstacles.
+* Player touch then screen to make Nyancat fly and avoid obstacles.
 
-You can share your score to social media, view other people's score by location in map
+* Share your score to social media
+
+* view other people's score by location in map
 
 The App made by Apple Xcode using swift 3.
 
