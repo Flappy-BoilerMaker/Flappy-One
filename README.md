@@ -12,6 +12,9 @@
 
 The App made by Apple Xcode using swift 3.
 
+## UI Wireframe 01
+
+<img src=https://github.com/Flappy-BoilerMaker/Flappy-One/blob/master/UI_01.png title='Game Cover Page' width='300' alt='Game Cover Page' />
 
 ## License
 
