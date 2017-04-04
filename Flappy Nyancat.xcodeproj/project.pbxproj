@@ -19,6 +19,7 @@
 		014F0B3F1E5D0A04004A3F26 /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 014F0B3E1E5D0A04004A3F26 /* jump.wav */; };
 		014F0B411E5D0A2D004A3F26 /* pixel_font01.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 014F0B401E5D0A2D004A3F26 /* pixel_font01.TTF */; };
 		014F0B431E5D0ADF004A3F26 /* RandomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014F0B421E5D0ADF004A3F26 /* RandomFunction.swift */; };
+		B66C7C54BC467A897F94DD5C /* Pods_Flappy_Nyancat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4537F2E273AC0BDAD8EC409 /* Pods_Flappy_Nyancat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,9 @@
 		014F0B3E1E5D0A04004A3F26 /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump.wav; sourceTree = "<group>"; };
 		014F0B401E5D0A2D004A3F26 /* pixel_font01.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = pixel_font01.TTF; sourceTree = "<group>"; };
 		014F0B421E5D0ADF004A3F26 /* RandomFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomFunction.swift; sourceTree = "<group>"; };
+		2AEE49BDE791356F48D03D14 /* Pods-Flappy Nyancat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flappy Nyancat.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flappy Nyancat/Pods-Flappy Nyancat.release.xcconfig"; sourceTree = "<group>"; };
+		8DD1C6C2D678A83FBB113B0E /* Pods-Flappy Nyancat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flappy Nyancat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flappy Nyancat/Pods-Flappy Nyancat.debug.xcconfig"; sourceTree = "<group>"; };
+		A4537F2E273AC0BDAD8EC409 /* Pods_Flappy_Nyancat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flappy_Nyancat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B66C7C54BC467A897F94DD5C /* Pods_Flappy_Nyancat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +59,8 @@
 			children = (
 				014F0B201E5D0784004A3F26 /* Flappy Nyancat */,
 				014F0B1F1E5D0784004A3F26 /* Products */,
+				9C75B25168F03C6D7B84B164 /* Pods */,
+				FE78C7866DF719078C97BF79 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +100,23 @@
 			name = Music;
 			sourceTree = "<group>";
 		};
+		9C75B25168F03C6D7B84B164 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8DD1C6C2D678A83FBB113B0E /* Pods-Flappy Nyancat.debug.xcconfig */,
+				2AEE49BDE791356F48D03D14 /* Pods-Flappy Nyancat.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FE78C7866DF719078C97BF79 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A4537F2E273AC0BDAD8EC409 /* Pods_Flappy_Nyancat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -100,9 +124,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 014F0B361E5D0784004A3F26 /* Build configuration list for PBXNativeTarget "Flappy Nyancat" */;
 			buildPhases = (
+				B330C131D68D6DD00CAC32D8 /* [CP] Check Pods Manifest.lock */,
 				014F0B1A1E5D0784004A3F26 /* Sources */,
 				014F0B1B1E5D0784004A3F26 /* Frameworks */,
 				014F0B1C1E5D0784004A3F26 /* Resources */,
+				ACE173BBA060C82B2AB19E18 /* [CP] Embed Pods Frameworks */,
+				F0C292E95043D1983CCFCAC6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -165,6 +192,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		ACE173BBA060C82B2AB19E18 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Flappy Nyancat/Pods-Flappy Nyancat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B330C131D68D6DD00CAC32D8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F0C292E95043D1983CCFCAC6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Flappy Nyancat/Pods-Flappy Nyancat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		014F0B1A1E5D0784004A3F26 /* Sources */ = {
@@ -295,6 +370,7 @@
 		};
 		014F0B371E5D0784004A3F26 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8DD1C6C2D678A83FBB113B0E /* Pods-Flappy Nyancat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = E5WM2Z52GU;
@@ -309,6 +385,7 @@
 		};
 		014F0B381E5D0784004A3F26 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AEE49BDE791356F48D03D14 /* Pods-Flappy Nyancat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = E5WM2Z52GU;
