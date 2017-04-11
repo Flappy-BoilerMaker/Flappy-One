@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import Social
 
 class GameViewController: UIViewController {
     
@@ -34,7 +35,7 @@ class GameViewController: UIViewController {
         }
     }
     
-    override var shouldAutorotate: Bool {
+        override var shouldAutorotate: Bool {
         return false  //disable totation
     }
     
