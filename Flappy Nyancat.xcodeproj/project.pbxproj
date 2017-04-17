@@ -20,6 +20,8 @@
 		014F0B411E5D0A2D004A3F26 /* pixel_font01.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 014F0B401E5D0A2D004A3F26 /* pixel_font01.TTF */; };
 		014F0B431E5D0ADF004A3F26 /* RandomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014F0B421E5D0ADF004A3F26 /* RandomFunction.swift */; };
 		02BE693AF7DA48D01ECAA78E /* Pods_Flappy_Nyancat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85542B00756FD757C20DA2AA /* Pods_Flappy_Nyancat.framework */; };
+		83FF15E41EA44D6D00764298 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FF15E31EA44D6D00764298 /* Score.swift */; };
+		83FF15E61EA44E6600764298 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83FF15E51EA44E6600764298 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		014F0B421E5D0ADF004A3F26 /* RandomFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomFunction.swift; sourceTree = "<group>"; };
 		0C2D3C04DEE9FC1E7EF7B563 /* Pods-Flappy Nyancat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flappy Nyancat.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flappy Nyancat/Pods-Flappy Nyancat.release.xcconfig"; sourceTree = "<group>"; };
 		6B7068EB962D42952EFB2232 /* Pods-Flappy Nyancat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flappy Nyancat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flappy Nyancat/Pods-Flappy Nyancat.debug.xcconfig"; sourceTree = "<group>"; };
+		83FF15E31EA44D6D00764298 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		83FF15E51EA44E6600764298 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		85542B00756FD757C20DA2AA /* Pods_Flappy_Nyancat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flappy_Nyancat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -81,11 +85,13 @@
 				014F0B271E5D0784004A3F26 /* GameScene.swift */,
 				014F0B421E5D0ADF004A3F26 /* RandomFunction.swift */,
 				014F0B291E5D0784004A3F26 /* GameViewController.swift */,
+				83FF15E51EA44E6600764298 /* GoogleService-Info.plist */,
 				014F0B2B1E5D0784004A3F26 /* Main.storyboard */,
 				014F0B2E1E5D0784004A3F26 /* Assets.xcassets */,
 				014F0B301E5D0784004A3F26 /* LaunchScreen.storyboard */,
 				014F0B391E5D09D3004A3F26 /* Music */,
 				014F0B331E5D0784004A3F26 /* Info.plist */,
+				83FF15E31EA44D6D00764298 /* Score.swift */,
 			);
 			path = "Flappy Nyancat";
 			sourceTree = "<group>";
@@ -148,11 +154,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = "Weichu Hu";
+				ORGANIZATIONNAME = "Heng Li";
 				TargetAttributes = {
 					014F0B1D1E5D0784004A3F26 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = E5WM2Z52GU;
+						DevelopmentTeam = 3L23CG9K7W;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -182,6 +188,7 @@
 			files = (
 				014F0B3F1E5D0A04004A3F26 /* jump.wav in Resources */,
 				014F0B2D1E5D0784004A3F26 /* Main.storyboard in Resources */,
+				83FF15E61EA44E6600764298 /* GoogleService-Info.plist in Resources */,
 				014F0B3D1E5D09F8004A3F26 /* NyanCat.mp3 in Resources */,
 				014F0B241E5D0784004A3F26 /* GameScene.sks in Resources */,
 				014F0B2F1E5D0784004A3F26 /* Assets.xcassets in Resources */,
@@ -250,6 +257,7 @@
 				014F0B2A1E5D0784004A3F26 /* GameViewController.swift in Sources */,
 				014F0B431E5D0ADF004A3F26 /* RandomFunction.swift in Sources */,
 				014F0B221E5D0784004A3F26 /* AppDelegate.swift in Sources */,
+				83FF15E41EA44D6D00764298 /* Score.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,14 +381,14 @@
 			baseConfigurationReference = 6B7068EB962D42952EFB2232 /* Pods-Flappy Nyancat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = E5WM2Z52GU;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3L23CG9K7W;
 				INFOPLIST_FILE = "Flappy Nyancat/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.huweichu.FHFlappyNyancat;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Heng-Li.Flappy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -389,14 +397,14 @@
 			baseConfigurationReference = 0C2D3C04DEE9FC1E7EF7B563 /* Pods-Flappy Nyancat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = E5WM2Z52GU;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3L23CG9K7W;
 				INFOPLIST_FILE = "Flappy Nyancat/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.huweichu.FHFlappyNyancat;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Heng-Li.Flappy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

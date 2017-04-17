@@ -10,6 +10,7 @@ import SpriteKit
 import AVFoundation
 import Social
 import UIKit
+import Firebase
 
 //import GameplayKit
 
@@ -18,6 +19,32 @@ struct GameObjects {
     static let Ground : UInt32 = 0x1 << 2
     static let Wall : UInt32 = 0x1 << 3
     static let Score : UInt32 = 0x1 << 4
+}
+
+class GameRoomTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
+    var items: [Score] = []
+    override init(frame: CGRect, style: UITableViewStyle) {
+        super.init(frame: frame, style: style)
+        self.delegate = self
+        self.dataSource = self
+    }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
+        let tmp = self.items[indexPath.row]
+        cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        cell.textLabel?.text = "\(indexPath.row + 1) Score: \(tmp.score!)            by \(tmp.name!)"
+        return cell
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Scoreboard"
+    }
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -38,6 +65,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var died = Bool()
     var restart = SKSpriteNode(	)
     var fb = SKSpriteNode()
+    var uploading: Bool = false
+    var fillin = UITextField()
+    var uploader = SKSpriteNode()
+    var scoreboard = GameRoomTableView()
+    var yes = SKSpriteNode()
+    var no = SKSpriteNode()
+    var ref:FIRDatabaseReference?
+    var scores: [Score]! = []
     
     var playerBG = AVAudioPlayer()
     var playerJP = AVAudioPlayer()
@@ -76,6 +111,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.removeAllChildren()
         self.removeAllActions()
+        self.scoreboard.removeFromSuperview()
+        if uploading == true {
+            cancelUpload()
+        }
         died = false
         gameStart = false
         score = 0
@@ -177,6 +216,119 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    //heng li upload btn
+    func uploadBtn() {
+        self.playerStop.play()
+        self.playerBG.stop()
+        
+        uploader = SKSpriteNode(imageNamed: "upload")
+        
+        uploader.size = CGSize(width: 200, height: 100)
+        uploader.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 - 240)
+        uploader.zPosition = 6
+        uploader.setScale(0)
+        self.addChild(uploader)
+        uploader.run(SKAction.scale(to: 1.0, duration: 0.3))
+    }
+    
+    func onUpload() {
+        self.playerStop.play()
+        self.playerBG.stop()
+        
+        uploader.removeFromParent()
+        
+        fillin.frame = CGRect(x: self.frame.width / 3, y: self.frame.height / 2 + 200, width: 150, height: 30)
+        fillin.placeholder = "Enter name here"
+        fillin.backgroundColor = UIColor.gray
+        self.scene?.view?.addSubview(fillin)
+        
+        yes = SKSpriteNode(imageNamed: "yes")
+        yes.size = CGSize(width: 50, height: 50)
+        yes.position = CGPoint(x: self.frame.width / 2 + 30, y: self.frame.height / 2 - 260)
+        yes.zPosition = 6
+        yes.setScale(0)
+        self.addChild(yes)
+        yes.run(SKAction.scale(to: 1.0, duration: 0.3))
+        
+        no = SKSpriteNode(imageNamed: "no")
+        no.size = CGSize(width: 50, height: 50)
+        no.position = CGPoint(x: self.frame.width / 2 - 30, y: self.frame.height / 2 - 260)
+        no.zPosition = 6
+        no.setScale(0)
+        self.addChild(no)
+        no.run(SKAction.scale(to: 1.0, duration: 0.3))
+        
+        uploading = true
+    }
+    
+    func cancelUpload() {
+        yes.removeFromParent()
+        no.removeFromParent()
+        fillin.removeFromSuperview()
+        uploadBtn()
+        fillin.text = ""
+        
+        uploading = false
+    }
+    
+    func insertBoard(new: Int) {
+        var swap: Int = 5
+        for index in 0...4 {
+//            print("Swap3: \(index)")
+            if score >= self.scoreboard.items[index].score! {
+                swap = index
+                break
+//                print("Swap1: \(swap)")
+            }
+        }
+        if swap != 5 {
+            if swap < 4 {
+                for index in 0...3-swap {
+//                    print("Swap2: \(3-index)")
+                    self.scoreboard.items[4-index].name = self.scoreboard.items[3-index].name
+                    self.scoreboard.items[4-index].score = self.scoreboard.items[3-index].score
+                }
+            }
+            self.scoreboard.items[swap].name = fillin.text
+            self.scoreboard.items[swap].score = score
+            self.scoreboard.reloadData()
+        }
+    }
+    
+    func uploadScore() {
+        if fillin.text != "" {
+            ref = FIRDatabase.database().reference()
+            let post = ["name": fillin.text!,
+                        "score": score] as [String : Any]
+            ref?.child("Score").childByAutoId().setValue(post)
+            if score > self.scoreboard.items[4].score! {
+                insertBoard(new: score)
+            }
+            cancelUpload()
+        } else { fillin.placeholder = "Cannot be empty" }
+    }
+    
+    func displayScore(){
+        ref = FIRDatabase.database().reference()
+        ref?.child("Score").queryOrdered(byChild: "score").queryLimited(toLast: 5).observe(.childAdded, with: { snapshot in
+            let dict = snapshot.value as! [String: Any]
+            let name = dict["name"] as? String
+            let score = dict["score"] as? Int
+//            print("test \(name!) and \(score!)")
+            let tmp = Score(player: name!, score: score!)
+            self.scores.append(tmp)
+            if self.scores.count == 5 {
+                self.scoreboard.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+                self.scoreboard.frame = CGRect(x: self.frame.width / 8, y: self.frame.width / 8, width: 280, height: 250)
+                self.scoreboard.backgroundColor = UIColor(white: 1, alpha: 0.5)
+                self.scene?.view?.addSubview(self.scoreboard)
+                self.scores.reverse()
+                self.scoreboard.items = self.scores
+                self.scoreboard.reloadData()
+            }
+        })
+    }
+    
     func didBegin(_ contact: SKPhysicsContact) {
         let firstBody = contact.bodyA
         let secondBody = contact.bodyB
@@ -210,6 +362,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 died = true
                 createBTN()
                 share()
+                uploadBtn()
+                scores = []
+                displayScore()
             }
         }
         else if firstBody.categoryBitMask == GameObjects.Octocat && secondBody.categoryBitMask == GameObjects.Ground || firstBody.categoryBitMask == GameObjects.Ground && secondBody.categoryBitMask == GameObjects.Octocat{
@@ -225,6 +380,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 died = true
                 createBTN()
                 share()
+                uploadBtn()
+                scores = []
+                displayScore()
             }
         }
     }
@@ -383,14 +541,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if died == true{
                 if restart.contains(location){
                     restartScene()
+                    uploader.removeFromParent()
                     
                 }
-            if died == true{
                 if fb.contains(location){
                     shareScore(scene: self)
                 }
-                
-            }
+                if uploader.contains(location){
+                    if uploading == false {
+                        onUpload()
+                    } else {
+                        if yes.contains(location){
+                            uploadScore()
+                        }
+                        if no.contains(location){
+                            cancelUpload()
+                        }
+                    }
+                }
         }
     }
         
