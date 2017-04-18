@@ -21,8 +21,8 @@ The App made by Apple Xcode using swift 3.
 - [x] The user should be able enter the nickname
 - [x] The game should have sound effect
 - [x] The game should have introduction lunch image
-- [ ] The user should be able enter the nickname
-- [ ] The sever should record user's nickname and score
+- [x] The user should be able enter the nickname
+- [x] The sever should record user's nickname and score
 - [x] The user should be able to share the score to social media (using API)
 
 
