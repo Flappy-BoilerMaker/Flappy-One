@@ -193,7 +193,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         restart = SKSpriteNode(imageNamed: "Restart")
         restart.size = CGSize(width: 200, height: 100)
-        restart.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
+        restart.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 - 50)
         restart.zPosition = 6
         restart.setScale(0)
         self.addChild(restart)
@@ -205,14 +205,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.playerStop.play()
         self.playerBG.stop()
         
-        fb = SKSpriteNode(imageNamed: "facebook")
+        fb = SKSpriteNode(imageNamed: "share_fix")
         
         fb.size = CGSize(width: 200, height: 100)
-        fb.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 - 120)
+        fb.position = CGPoint(x: self.frame.width / 2 + 80, y: self.frame.height / 2 - 150)
         fb.zPosition = 6
         fb.setScale(0)
         self.addChild(fb)
-        fb.run(SKAction.scale(to: 1.0, duration: 0.3))
+        fb.run(SKAction.scale(to: 0.7, duration: 0.3))
         
     }
     
@@ -221,38 +221,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.playerStop.play()
         self.playerBG.stop()
         
-        uploader = SKSpriteNode(imageNamed: "upload")
+        uploader = SKSpriteNode(imageNamed: "upload_fix")
         
         uploader.size = CGSize(width: 200, height: 100)
-        uploader.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 - 240)
+        uploader.position = CGPoint(x: self.frame.width / 2 - 80, y: self.frame.height / 2 - 150)
         uploader.zPosition = 6
         uploader.setScale(0)
         self.addChild(uploader)
-        uploader.run(SKAction.scale(to: 1.0, duration: 0.3))
+        uploader.run(SKAction.scale(to: 0.7, duration: 0.3))
     }
     
     func onUpload() {
         self.playerStop.play()
         self.playerBG.stop()
         
-        uploader.removeFromParent()
+        //uploader.removeFromParent()
         
-        fillin.frame = CGRect(x: self.frame.width / 3, y: self.frame.height / 2 + 200, width: 150, height: 30)
+        fillin.frame = CGRect(x: self.frame.width / 2 - 75, y: self.frame.height / 2, width: 150, height: 30)
         fillin.placeholder = "Enter name here"
         fillin.backgroundColor = UIColor.gray
         self.scene?.view?.addSubview(fillin)
         
-        yes = SKSpriteNode(imageNamed: "yes")
+        yes = SKSpriteNode(imageNamed: "check_icon")
         yes.size = CGSize(width: 50, height: 50)
-        yes.position = CGPoint(x: self.frame.width / 2 + 30, y: self.frame.height / 2 - 260)
+        yes.position = CGPoint(x: self.frame.width / 2 + 30, y: self.frame.height / 2 - 60)
         yes.zPosition = 6
         yes.setScale(0)
         self.addChild(yes)
         yes.run(SKAction.scale(to: 1.0, duration: 0.3))
         
-        no = SKSpriteNode(imageNamed: "no")
+        no = SKSpriteNode(imageNamed: "cross_icon")
         no.size = CGSize(width: 50, height: 50)
-        no.position = CGPoint(x: self.frame.width / 2 - 30, y: self.frame.height / 2 - 260)
+        no.position = CGPoint(x: self.frame.width / 2 - 30, y: self.frame.height / 2 - 60)
         no.zPosition = 6
         no.setScale(0)
         self.addChild(no)
@@ -551,13 +551,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     if uploading == false {
                         onUpload()
                     } else {
-                        if yes.contains(location){
-                            uploadScore()
-                        }
-                        if no.contains(location){
-                            cancelUpload()
-                        }
+
                     }
+                }
+                
+                if yes.contains(location){
+                    uploadScore()
+                }
+                if no.contains(location){
+                    cancelUpload()
                 }
         }
     }
