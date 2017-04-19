@@ -237,8 +237,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //uploader.removeFromParent()
         
-        fillin.frame = CGRect(x: self.frame.width / 2 - 75, y: self.frame.height / 2, width: 150, height: 30)
-        fillin.placeholder = "Enter name here"
+        fillin.frame = CGRect(x: self.frame.width / 2 - 90, y: self.frame.height / 2, width: 180, height: 30)
+        fillin.placeholder = "Enter name on scoreboard"
         fillin.backgroundColor = UIColor.gray
         self.scene?.view?.addSubview(fillin)
         

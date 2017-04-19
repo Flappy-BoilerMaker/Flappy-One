@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>899315769892-7k8ac6636ggqfod3ssctm7kff4hact00.apps.googleusercontent.com</string>
+	<string>472695550088-hh4fb65ba6vljvmc67il1rsunl40i2ji.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.899315769892-7k8ac6636ggqfod3ssctm7kff4hact00</string>
+	<string>com.googleusercontent.apps.472695550088-hh4fb65ba6vljvmc67il1rsunl40i2ji</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCpJ4xEAqfErpSdxfNF4G5SKXwnoPJ0Ifk</string>
+	<string>AIzaSyCkjeIqejF00cNIHL5mCJ71ZlMnuex1zYE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>899315769892</string>
+	<string>472695550088</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.Heng-Li.Flappy</string>
+	<string>com.huweichu.FlappyOne</string>
 	<key>PROJECT_ID</key>
-	<string>flappy-one</string>
+	<string>jump-jump-frank</string>
 	<key>STORAGE_BUCKET</key>
-	<string>flappy-one.appspot.com</string>
+	<string>jump-jump-frank.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:899315769892:ios:754dc414ec31beba</string>
+	<string>1:472695550088:ios:36bda2cecd97e217</string>
 	<key>DATABASE_URL</key>
-	<string>https://flappy-one.firebaseio.com</string>
+	<string>https://jump-jump-frank.firebaseio.com</string>
 </dict>
 </plist>
