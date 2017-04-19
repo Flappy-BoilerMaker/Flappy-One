@@ -438,7 +438,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         wallPair.zPosition = 1
         
         
-        let randomPosition = CGFloat.random(min: -200, max: 200)
+        let randomPosition = CGFloat.random(min: -120, max: 220)
         wallPair.position.y = wallPair.position.y +  randomPosition
         wallPair.addChild(scoreNode)
         
