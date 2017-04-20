@@ -39,7 +39,7 @@ class GameRoomTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
         let tmp = self.items[indexPath.row]
         cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
-        cell.textLabel?.text = "\(indexPath.row + 1) Score: \(tmp.score!)            by \(tmp.name!)"
+        cell.textLabel?.text = "\(indexPath.row + 1) Score: \(tmp.score!)   by \(tmp.name!)"
         return cell
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -265,7 +265,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         yes.removeFromParent()
         no.removeFromParent()
         fillin.removeFromSuperview()
-        uploadBtn()
+//        uploader.removeFromParent()
+//        uploadBtn()
         fillin.text = ""
         
         uploading = false
@@ -301,14 +302,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let post = ["name": fillin.text!,
                         "score": score] as [String : Any]
             ref?.child("Score").childByAutoId().setValue(post)
-            if score > self.scoreboard.items[4].score! {
-                insertBoard(new: score)
-            }
+//            if score > self.scoreboard.items[4].score! {
+//                insertBoard(new: score)
+//            }
             cancelUpload()
         } else { fillin.placeholder = "Cannot be empty" }
     }
     
     func displayScore(){
+
         ref = FIRDatabase.database().reference()
         ref?.child("Score").queryOrdered(byChild: "score").queryLimited(toLast: 5).observe(.childAdded, with: { snapshot in
             let dict = snapshot.value as! [String: Any]
@@ -325,6 +327,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.scores.reverse()
                 self.scoreboard.items = self.scores
                 self.scoreboard.reloadData()
+                
             }
         })
     }
@@ -540,8 +543,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if died == true{
                 if restart.contains(location){
-                    restartScene()
-                    uploader.removeFromParent()
+                    
+//                    uploader.removeFromParent()
+                    if uploading == true {
+                        if yes.contains(location){
+                            uploadScore()
+                        }
+                        if no.contains(location){
+                            cancelUpload()
+                        }
+                    } else {restartScene()}
                     
                 }
                 if fb.contains(location){
@@ -555,12 +566,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     }
                 }
                 
-                if yes.contains(location){
-                    uploadScore()
-                }
-                if no.contains(location){
-                    cancelUpload()
-                }
+                
         }
     }
         

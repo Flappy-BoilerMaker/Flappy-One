@@ -19,8 +19,8 @@
 		014F0B3F1E5D0A04004A3F26 /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 014F0B3E1E5D0A04004A3F26 /* jump.wav */; };
 		014F0B411E5D0A2D004A3F26 /* pixel_font01.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 014F0B401E5D0A2D004A3F26 /* pixel_font01.TTF */; };
 		014F0B431E5D0ADF004A3F26 /* RandomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014F0B421E5D0ADF004A3F26 /* RandomFunction.swift */; };
-		01B7444D1EA6FA76005F6482 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01B7444C1EA6FA76005F6482 /* GoogleService-Info.plist */; };
 		02BE693AF7DA48D01ECAA78E /* Pods_Flappy_Nyancat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85542B00756FD757C20DA2AA /* Pods_Flappy_Nyancat.framework */; };
+		83DCE40D1EA8979F002D660C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83DCE40C1EA8979F002D660C /* GoogleService-Info.plist */; };
 		83FF15E41EA44D6D00764298 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FF15E31EA44D6D00764298 /* Score.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,9 +39,9 @@
 		014F0B3E1E5D0A04004A3F26 /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump.wav; sourceTree = "<group>"; };
 		014F0B401E5D0A2D004A3F26 /* pixel_font01.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = pixel_font01.TTF; sourceTree = "<group>"; };
 		014F0B421E5D0ADF004A3F26 /* RandomFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomFunction.swift; sourceTree = "<group>"; };
-		01B7444C1EA6FA76005F6482 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0C2D3C04DEE9FC1E7EF7B563 /* Pods-Flappy Nyancat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flappy Nyancat.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flappy Nyancat/Pods-Flappy Nyancat.release.xcconfig"; sourceTree = "<group>"; };
 		6B7068EB962D42952EFB2232 /* Pods-Flappy Nyancat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flappy Nyancat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flappy Nyancat/Pods-Flappy Nyancat.debug.xcconfig"; sourceTree = "<group>"; };
+		83DCE40C1EA8979F002D660C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		83FF15E31EA44D6D00764298 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		85542B00756FD757C20DA2AA /* Pods_Flappy_Nyancat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flappy_Nyancat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -90,8 +90,8 @@
 				014F0B301E5D0784004A3F26 /* LaunchScreen.storyboard */,
 				014F0B391E5D09D3004A3F26 /* Music */,
 				014F0B331E5D0784004A3F26 /* Info.plist */,
+				83DCE40C1EA8979F002D660C /* GoogleService-Info.plist */,
 				83FF15E31EA44D6D00764298 /* Score.swift */,
-				01B7444C1EA6FA76005F6482 /* GoogleService-Info.plist */,
 			);
 			path = "Flappy Nyancat";
 			sourceTree = "<group>";
@@ -188,12 +188,12 @@
 			files = (
 				014F0B3F1E5D0A04004A3F26 /* jump.wav in Resources */,
 				014F0B2D1E5D0784004A3F26 /* Main.storyboard in Resources */,
-				01B7444D1EA6FA76005F6482 /* GoogleService-Info.plist in Resources */,
 				014F0B3D1E5D09F8004A3F26 /* NyanCat.mp3 in Resources */,
 				014F0B241E5D0784004A3F26 /* GameScene.sks in Resources */,
 				014F0B2F1E5D0784004A3F26 /* Assets.xcassets in Resources */,
 				014F0B321E5D0784004A3F26 /* LaunchScreen.storyboard in Resources */,
 				014F0B3B1E5D09F2004A3F26 /* stop_cut.mp3 in Resources */,
+				83DCE40D1EA8979F002D660C /* GoogleService-Info.plist in Resources */,
 				014F0B411E5D0A2D004A3F26 /* pixel_font01.TTF in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
