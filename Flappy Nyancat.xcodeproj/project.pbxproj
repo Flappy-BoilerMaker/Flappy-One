@@ -27,6 +27,8 @@
 		01C146141EA8F24100950EDC /* Push_Btn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 01C146131EA8F24100950EDC /* Push_Btn.mp3 */; };
 		01C146161EA8F5A500950EDC /* upload_true.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 01C146151EA8F5A500950EDC /* upload_true.mp3 */; };
 		01C146181EA8F5BF00950EDC /* upload_false.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 01C146171EA8F5BF00950EDC /* upload_false.mp3 */; };
+		01C1461A1EA8FB4700950EDC /* restart.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 01C146191EA8FB4700950EDC /* restart.mp3 */; };
+		01C1461C1EA8FE0B00950EDC /* levelup.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 01C1461B1EA8FE0B00950EDC /* levelup.mp3 */; };
 		02BE693AF7DA48D01ECAA78E /* Pods_Flappy_Nyancat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85542B00756FD757C20DA2AA /* Pods_Flappy_Nyancat.framework */; };
 		83DCE40D1EA8979F002D660C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83DCE40C1EA8979F002D660C /* GoogleService-Info.plist */; };
 		83FF15E41EA44D6D00764298 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FF15E31EA44D6D00764298 /* Score.swift */; };
@@ -55,6 +57,8 @@
 		01C146131EA8F24100950EDC /* Push_Btn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Push_Btn.mp3; sourceTree = "<group>"; };
 		01C146151EA8F5A500950EDC /* upload_true.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = upload_true.mp3; sourceTree = "<group>"; };
 		01C146171EA8F5BF00950EDC /* upload_false.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = upload_false.mp3; sourceTree = "<group>"; };
+		01C146191EA8FB4700950EDC /* restart.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = restart.mp3; sourceTree = "<group>"; };
+		01C1461B1EA8FE0B00950EDC /* levelup.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = levelup.mp3; sourceTree = "<group>"; };
 		0C2D3C04DEE9FC1E7EF7B563 /* Pods-Flappy Nyancat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flappy Nyancat.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flappy Nyancat/Pods-Flappy Nyancat.release.xcconfig"; sourceTree = "<group>"; };
 		6B7068EB962D42952EFB2232 /* Pods-Flappy Nyancat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flappy Nyancat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flappy Nyancat/Pods-Flappy Nyancat.debug.xcconfig"; sourceTree = "<group>"; };
 		83DCE40C1EA8979F002D660C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 		014F0B391E5D09D3004A3F26 /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				01C1461B1EA8FE0B00950EDC /* levelup.mp3 */,
+				01C146191EA8FB4700950EDC /* restart.mp3 */,
 				01C146171EA8F5BF00950EDC /* upload_false.mp3 */,
 				01C146151EA8F5A500950EDC /* upload_true.mp3 */,
 				01C146131EA8F24100950EDC /* Push_Btn.mp3 */,
@@ -222,9 +228,11 @@
 				01C146161EA8F5A500950EDC /* upload_true.mp3 in Resources */,
 				01C146141EA8F24100950EDC /* Push_Btn.mp3 in Resources */,
 				018F3D7C1EA8BE7500312480 /* Fipps-Regular.otf in Resources */,
+				01C1461A1EA8FB4700950EDC /* restart.mp3 in Resources */,
 				018F3D7D1EA8BE7500312480 /* 3Dventure.ttf in Resources */,
 				018F3D7E1EA8BE7500312480 /* Savior1.ttf in Resources */,
 				018F3D7F1EA8BE7500312480 /* Savior4.ttf in Resources */,
+				01C1461C1EA8FE0B00950EDC /* levelup.mp3 in Resources */,
 				014F0B3F1E5D0A04004A3F26 /* jump.wav in Resources */,
 				014F0B2D1E5D0784004A3F26 /* Main.storyboard in Resources */,
 				014F0B3D1E5D09F8004A3F26 /* NyanCat.mp3 in Resources */,

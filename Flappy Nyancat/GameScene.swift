@@ -90,12 +90,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var ref:FIRDatabaseReference?
     var scores: [Score]! = []
     
+    // Sound Effects
     var playerBG = AVAudioPlayer()
     var playerJP = AVAudioPlayer()
     var playerStop = AVAudioPlayer()
     var playerBtnPush = AVAudioPlayer()
     var playerUploadTrue = AVAudioPlayer()
     var playerUploadFalse = AVAudioPlayer()
+    var playerRestart = AVAudioPlayer()
+    var playerLevelup = AVAudioPlayer()
     
     
     //private var lastUpdateTime : TimeInterval = 0
@@ -145,10 +148,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } catch let error {
             print(error)
         }
+        
+        do {
+            playerRestart = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "restart", ofType: "mp3")!))
+            playerStop.prepareToPlay()
+        } catch let error {
+            print(error)
+        }
+        
+        do {
+            playerLevelup = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "levelup", ofType: "mp3")!))
+            playerStop.prepareToPlay()
+        } catch let error {
+            print(error)
+        }
     }
     
     func restartScene(){
-        self.playerBtnPush.play()
+        self.playerRestart.play()
         
         self.removeAllChildren()
         self.removeAllActions()
@@ -300,6 +317,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func cancelUpload() {
+        self.playerBtnPush.play()
         yes.removeFromParent()
         no.removeFromParent()
         fillin.removeFromSuperview()
@@ -336,7 +354,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func uploadScore() {
         if fillin.text != "" {
-            playerUploadTrue.play()
+            self.playerUploadTrue.play()
             ref = FIRDatabase.database().reference()
             let post = ["name": fillin.text!,
                         "score": score] as [String : Any]
@@ -346,7 +364,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             cancelUpload()
         } else {
-            playerUploadFalse.play()
+            self.playerUploadFalse.play()
             fillin.placeholder = "Cannot be empty"
         }
     }
@@ -383,12 +401,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             score += 1
             scoreLb.text = "Star(s): \(score)"
+            if (score % 50 == 0){
+                self.playerLevelup.play()
+            }
             firstBody.node?.removeFromParent()
             
         }
         else if firstBody.categoryBitMask == GameObjects.Octocat && secondBody.categoryBitMask == GameObjects.Score {
             
             score += 1
+            if (score % 50 == 0){
+                self.playerLevelup.play()
+            }
             scoreLb.text = "Star(s): \(score)"
             secondBody.node?.removeFromParent()
             
