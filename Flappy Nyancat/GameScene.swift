@@ -93,6 +93,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playerBG = AVAudioPlayer()
     var playerJP = AVAudioPlayer()
     var playerStop = AVAudioPlayer()
+    var playerBtnPush = AVAudioPlayer()
+    var playerUploadTrue = AVAudioPlayer()
+    var playerUploadFalse = AVAudioPlayer()
     
     
     //private var lastUpdateTime : TimeInterval = 0
@@ -121,9 +124,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } catch let error {
             print(error)
         }
+        
+        do {
+            playerBtnPush = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Push_Btn", ofType: "mp3")!))
+            playerStop.prepareToPlay()
+        } catch let error {
+            print(error)
+        }
+        
+        do {
+            playerUploadTrue = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "upload_true", ofType: "mp3")!))
+            playerStop.prepareToPlay()
+        } catch let error {
+            print(error)
+        }
+        
+        do {
+            playerUploadFalse = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "upload_false", ofType: "mp3")!))
+            playerStop.prepareToPlay()
+        } catch let error {
+            print(error)
+        }
     }
     
     func restartScene(){
+        self.playerBtnPush.play()
         
         self.removeAllChildren()
         self.removeAllActions()
@@ -217,8 +242,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func share(){
-        //self.playerStop.play()
-        //self.playerBG.stop()
+        //self.playerBtnPush.play()
         
         fb = SKSpriteNode(imageNamed: "share_fix")
         
@@ -233,8 +257,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //heng li upload btn
     func uploadBtn() {
-        //self.playerStop.play()
-        //self.playerBG.stop()
+        //self.playerBtnPush.play()
         
         uploader = SKSpriteNode(imageNamed: "upload_fix")
         
@@ -247,19 +270,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func onUpload() {
-        //self.playerStop.play()
+        self.playerBtnPush.play()
         //self.playerBG.stop()
         
         //uploader.removeFromParent()
         
-        fillin.frame = CGRect(x: self.frame.width / 2 - 90, y: self.frame.height / 2, width: 180, height: 30)
-        fillin.placeholder = "Enter name on scoreboard"
+        fillin.frame = CGRect(x: self.frame.width / 2 - 80, y: self.frame.height / 2 - 15, width: 160, height: 30)
+        fillin.placeholder = "Enter nick name"
         fillin.backgroundColor = UIColor.gray
         self.scene?.view?.addSubview(fillin)
         
         yes = SKSpriteNode(imageNamed: "check_icon")
         yes.size = CGSize(width: 50, height: 50)
-        yes.position = CGPoint(x: self.frame.width / 2 + 30, y: self.frame.height / 2 - 60)
+        yes.position = CGPoint(x: self.frame.width / 2 + 35, y: self.frame.height / 2 - 45)
         yes.zPosition = 10
         yes.setScale(0)
         self.addChild(yes)
@@ -267,7 +290,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         no = SKSpriteNode(imageNamed: "cross_icon")
         no.size = CGSize(width: 50, height: 50)
-        no.position = CGPoint(x: self.frame.width / 2 - 30, y: self.frame.height / 2 - 60)
+        no.position = CGPoint(x: self.frame.width / 2 - 35, y: self.frame.height / 2 - 45)
         no.zPosition = 10
         no.setScale(0)
         self.addChild(no)
@@ -313,6 +336,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func uploadScore() {
         if fillin.text != "" {
+            playerUploadTrue.play()
             ref = FIRDatabase.database().reference()
             let post = ["name": fillin.text!,
                         "score": score] as [String : Any]
@@ -321,7 +345,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 insertBoard(new: score)
             }
             cancelUpload()
-        } else { fillin.placeholder = "Cannot be empty" }
+        } else {
+            playerUploadFalse.play()
+            fillin.placeholder = "Cannot be empty"
+        }
     }
     
     func displayScore(){
@@ -552,7 +579,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if died == true{
                 if restart.contains(location){
                 
-    //                    uploader.removeFromParent()
+    //              uploader.removeFromParent()
                     if uploading == true {
                         if yes.contains(location){
                             uploadScore()
@@ -563,6 +590,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     } else {restartScene()}
                 }
                 if fb.contains(location){
+                    self.playerBtnPush.play()
                     shareScore(scene: self)
                 }
                 if uploader.contains(location){
