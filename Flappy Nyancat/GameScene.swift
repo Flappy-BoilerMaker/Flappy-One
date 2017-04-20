@@ -181,7 +181,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(Ground)
         
         //set up octocat image
-        Octocat = SKSpriteNode(imageNamed: "pro-icon-1")
+        Octocat = SKSpriteNode(imageNamed: "Frank_icon_double")
         Octocat.size = CGSize(width: 45, height: 45)
         Octocat.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
         
