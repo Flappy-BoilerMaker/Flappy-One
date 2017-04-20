@@ -245,7 +245,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         yes = SKSpriteNode(imageNamed: "check_icon")
         yes.size = CGSize(width: 50, height: 50)
         yes.position = CGPoint(x: self.frame.width / 2 + 30, y: self.frame.height / 2 - 60)
-        yes.zPosition = 6
+        yes.zPosition = 10
         yes.setScale(0)
         self.addChild(yes)
         yes.run(SKAction.scale(to: 1.0, duration: 0.3))
@@ -253,7 +253,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         no = SKSpriteNode(imageNamed: "cross_icon")
         no.size = CGSize(width: 50, height: 50)
         no.position = CGPoint(x: self.frame.width / 2 - 30, y: self.frame.height / 2 - 60)
-        no.zPosition = 6
+        no.zPosition = 10
         no.setScale(0)
         self.addChild(no)
         no.run(SKAction.scale(to: 1.0, duration: 0.3))
@@ -302,9 +302,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let post = ["name": fillin.text!,
                         "score": score] as [String : Any]
             ref?.child("Score").childByAutoId().setValue(post)
-//            if score > self.scoreboard.items[4].score! {
-//                insertBoard(new: score)
-//            }
+            if score > self.scoreboard.items[4].score! {
+                insertBoard(new: score)
+            }
             cancelUpload()
         } else { fillin.placeholder = "Cannot be empty" }
     }
