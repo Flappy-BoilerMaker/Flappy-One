@@ -467,7 +467,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func shareScore(scene: SKScene) {
-        let postText: String = "Check out my score! I got \(score)! Can you beat it?"
+        let postText: String = "I collected \(score) stars in Jump! Jump! Frank! Come and beat me in the game!\nhttps://appsto.re/us/jvKeib.i"
         let postImage: UIImage = getScreenshot(scene: scene)
         let activityItems = [postText, postImage] as [Any]
         let activityController = UIActivityViewController(
@@ -518,7 +518,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 () in
             
                 self.createWalls()
-            
             })
         
             let delay = SKAction.wait(forDuration: 1.5)
@@ -545,7 +544,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 Octocat.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 Octocat.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
             }
-        
         }
 
         for touch in touches{
@@ -563,7 +561,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             cancelUpload()
                         }
                     } else {restartScene()}
-                
                 }
                 if fb.contains(location){
                     shareScore(scene: self)
@@ -577,9 +574,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }
+        
     }
-        
-        
+    
     override func update(_ currentTime: TimeInterval) {
         /* Called before each frame is rendered */
         
@@ -593,13 +590,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     bg.position = CGPoint(x: bg.position.x - 2, y: bg.position.y)
                     
                     if bg.position.x <= -bg.size.width {
-                        bg.position = CGPoint(x: bg.position.x + bg.size.width * 2, y: bg.position.y)
                         
+                        bg.position = CGPoint(x: bg.position.x + bg.size.width * 2, y: bg.position.y)
                     }
-                    
                 }))
-                
             }
         }
     }
+    
 }
