@@ -490,90 +490,82 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return image!
     }
 
-
-
-
-
-
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if gameStart == false{
             
-            gameStart =  true
+                gameStart =  true
             
-            self.playerBG.play()
+                self.playerBG.play()
             
-            self.Octocat.physicsBody?.affectedByGravity = true
+                self.Octocat.physicsBody?.affectedByGravity = true
             
-            let spawn = SKAction.run({
-                () in
+                let spawn = SKAction.run({
+                    () in
                 
-                self.createWalls()
+                    self.createWalls()
                 
-            })
+                })
             
-            let delay = SKAction.wait(forDuration: 1.5)
-            let SpawnDelay = SKAction.sequence([spawn, delay])
-            let spawnDelayForever = SKAction.repeatForever(SpawnDelay)
-            self.run(spawnDelayForever)
+                let delay = SKAction.wait(forDuration: 1.5)
+                let SpawnDelay = SKAction.sequence([spawn, delay])
+                let spawnDelayForever = SKAction.repeatForever(SpawnDelay)
+                self.run(spawnDelayForever)
             
-            let distance = CGFloat(self.frame.width + wallPair.frame.width)
-            let movePipes = SKAction.moveBy(x: -distance - 50, y: 0, duration: TimeInterval(0.008 * distance))
-            let removePipes = SKAction.removeFromParent()
-            moveRemove = SKAction.sequence([movePipes, removePipes])
+                let distance = CGFloat(self.frame.width + wallPair.frame.width)
+                let movePipes = SKAction.moveBy(x: -distance - 50, y: 0, duration: TimeInterval(0.008 * distance))
+                let removePipes = SKAction.removeFromParent()
+                moveRemove = SKAction.sequence([movePipes, removePipes])
             
-            playerJP.play()
-            Octocat.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-            Octocat.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
-        }
-        else{
-            
-            if died == true{
-                
-            }
-            else{
                 playerJP.play()
                 Octocat.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 Octocat.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
             }
+            else{
             
-        }
+                if died == true{
+                    
+                }
+                else{
+                    playerJP.play()
+                    Octocat.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+                    Octocat.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
+                }
+            
+            }
         
-        for touch in touches{
-            let location = touch.location(in: self)
+            for touch in touches{
+                let location = touch.location(in: self)
             
-            if died == true{
-                if restart.contains(location){
+                if died == true{
+                    if restart.contains(location){
                     
 //                    uploader.removeFromParent()
-                    if uploading == true {
-                        if yes.contains(location){
-                            uploadScore()
-                        }
-                        if no.contains(location){
-                            cancelUpload()
-                        }
-                    } else {restartScene()}
+                        if uploading == true {
+                            if yes.contains(location){
+                                uploadScore()
+                            }
+                            if no.contains(location){
+                                cancelUpload()
+                            }
+                        } else {restartScene()}
                     
-                }
-                if fb.contains(location){
-                    shareScore(scene: self)
-                }
-                if uploader.contains(location){
-                    if uploading == false {
-                        onUpload()
-                    } else {
-
+                    }
+                    if fb.contains(location){
+                        shareScore(scene: self)
+                    }
+                    if uploader.contains(location){
+                        if uploading == false {
+                            onUpload()
+                        } else {
+                            
+                        }
                     }
                 }
-                
-                
         }
     }
         
         
-    
-    
-    func update(_ currentTime: TimeInterval) {
+    override func update(_ currentTime: TimeInterval) {
         /* Called before each frame is rendered */
         
         if gameStart == true{
@@ -595,6 +587,4 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
-}
-
 }
