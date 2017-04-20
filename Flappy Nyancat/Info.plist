@@ -29,6 +29,10 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>pixel_font01.TTF</string>
+		<string>Fipps-Regular.otf</string>
+		<string>3Dventure.ttf</string>
+		<string>Savior1.ttf</string>
+		<string>Savior4.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

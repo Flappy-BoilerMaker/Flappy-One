@@ -39,7 +39,23 @@ class GameRoomTableView: UITableView,UITableViewDelegate,UITableViewDataSource {
         let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
         let tmp = self.items[indexPath.row]
         cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
-        cell.textLabel?.text = "\(indexPath.row + 1) Score: \(tmp.score!)   by \(tmp.name!)"
+        
+        //Score print format add by Frank
+        cell.textLabel?.font = UIFont(name: "Savior1", size: 30)
+        if (tmp.score! < 100) {
+            if (tmp.score! < 10) {
+                cell.textLabel?.text = "\(indexPath.row + 1):   \(tmp.score!) stars   \(tmp.name!)"
+            }
+            else {
+                cell.textLabel?.text = "\(indexPath.row + 1):  \(tmp.score!) stars   \(tmp.name!)"
+            }
+            
+        }
+        else {
+            cell.textLabel?.text = "\(indexPath.row + 1): \(tmp.score!) stars   \(tmp.name!)"
+        }
+        
+        //cell.textLabel?.text = "\(indexPath.row + 1). Score: \(tmp.score!)   by \(tmp.name!)"
         return cell
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -122,10 +138,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
- 
-
-    
-    
     func createScene() {
         
         //print(UIFont.familyNames)
@@ -142,11 +154,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
-        scoreLb.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 + self.frame.height / 2.5)
-        scoreLb.text = "Star(s):\(score)"
-        scoreLb.fontName = "04b"
+        scoreLb.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 + self.frame.height / 2.5 + 8)
+        scoreLb.text = "Star(s): \(score)"
+//        scoreLb.fontName = "04b"
+//        scoreLb.fontSize = 25
+        scoreLb.fontName = "3Dventure"
+        scoreLb.fontSize = 45
         scoreLb.zPosition = 5
-        scoreLb.fontSize = 25
+        
         //scoreLb.fontColor
         self.addChild(scoreLb)
         
@@ -168,7 +183,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //set up octocat image
         Octocat = SKSpriteNode(imageNamed: "pro-icon-1")
         Octocat.size = CGSize(width: 45, height: 45)
-        Octocat.position = CGPoint(x: self.frame.width / 2 - Octocat.frame.width, y: self.frame.height / 2)
+        Octocat.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
         
         Octocat.physicsBody = SKPhysicsBody(circleOfRadius: Octocat.frame.height / 2)
         Octocat.physicsBody?.categoryBitMask = GameObjects.Octocat
@@ -202,8 +217,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func share(){
-        self.playerStop.play()
-        self.playerBG.stop()
+        //self.playerStop.play()
+        //self.playerBG.stop()
         
         fb = SKSpriteNode(imageNamed: "share_fix")
         
@@ -218,8 +233,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //heng li upload btn
     func uploadBtn() {
-        self.playerStop.play()
-        self.playerBG.stop()
+        //self.playerStop.play()
+        //self.playerBG.stop()
         
         uploader = SKSpriteNode(imageNamed: "upload_fix")
         
@@ -232,8 +247,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func onUpload() {
-        self.playerStop.play()
-        self.playerBG.stop()
+        //self.playerStop.play()
+        //self.playerBG.stop()
         
         //uploader.removeFromParent()
         
@@ -321,7 +336,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.scores.append(tmp)
             if self.scores.count == 5 {
                 self.scoreboard.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-                self.scoreboard.frame = CGRect(x: self.frame.width / 8, y: self.frame.width / 8, width: 280, height: 250)
+                self.scoreboard.frame = CGRect(x: self.frame.width / 2 - (300/2), y: (self.frame.height / 2) - (self.frame.height / 2.5) + 8, width: 300, height: 250)
                 self.scoreboard.backgroundColor = UIColor(white: 1, alpha: 0.5)
                 self.scene?.view?.addSubview(self.scoreboard)
                 self.scores.reverse()
@@ -340,14 +355,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if firstBody.categoryBitMask == GameObjects.Score && secondBody.categoryBitMask == GameObjects.Octocat{
             
             score += 1
-            scoreLb.text = "GitHub Star(s):\(score)"
+            scoreLb.text = "Star(s): \(score)"
             firstBody.node?.removeFromParent()
             
         }
         else if firstBody.categoryBitMask == GameObjects.Octocat && secondBody.categoryBitMask == GameObjects.Score {
             
             score += 1
-            scoreLb.text = "GitHub Star(s):\(score)"
+            scoreLb.text = "Star(s): \(score)"
             secondBody.node?.removeFromParent()
             
         }
@@ -493,74 +508,74 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if gameStart == false{
             
-                gameStart =  true
+            gameStart =  true
             
-                self.playerBG.play()
+            self.playerBG.play()
+        
+            self.Octocat.physicsBody?.affectedByGravity = true
+        
+            let spawn = SKAction.run({
+                () in
             
-                self.Octocat.physicsBody?.affectedByGravity = true
+                self.createWalls()
             
-                let spawn = SKAction.run({
-                    () in
+            })
+        
+            let delay = SKAction.wait(forDuration: 1.5)
+            let SpawnDelay = SKAction.sequence([spawn, delay])
+            let spawnDelayForever = SKAction.repeatForever(SpawnDelay)
+            self.run(spawnDelayForever)
+        
+            let distance = CGFloat(self.frame.width + wallPair.frame.width)
+            let movePipes = SKAction.moveBy(x: -distance - 50, y: 0, duration: TimeInterval(0.008 * distance))
+            let removePipes = SKAction.removeFromParent()
+            moveRemove = SKAction.sequence([movePipes, removePipes])
+        
+            playerJP.play()
+            Octocat.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+            Octocat.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
+        }
+        else{
+        
+            if died == true{
                 
-                    self.createWalls()
-                
-                })
-            
-                let delay = SKAction.wait(forDuration: 1.5)
-                let SpawnDelay = SKAction.sequence([spawn, delay])
-                let spawnDelayForever = SKAction.repeatForever(SpawnDelay)
-                self.run(spawnDelayForever)
-            
-                let distance = CGFloat(self.frame.width + wallPair.frame.width)
-                let movePipes = SKAction.moveBy(x: -distance - 50, y: 0, duration: TimeInterval(0.008 * distance))
-                let removePipes = SKAction.removeFromParent()
-                moveRemove = SKAction.sequence([movePipes, removePipes])
-            
+            }
+            else{
                 playerJP.play()
                 Octocat.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 Octocat.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
             }
-            else{
-            
-                if died == true{
-                    
-                }
-                else{
-                    playerJP.play()
-                    Octocat.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-                    Octocat.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
-                }
-            
-            }
         
-            for touch in touches{
-                let location = touch.location(in: self)
-            
-                if died == true{
-                    if restart.contains(location){
-                    
-//                    uploader.removeFromParent()
-                        if uploading == true {
-                            if yes.contains(location){
-                                uploadScore()
-                            }
-                            if no.contains(location){
-                                cancelUpload()
-                            }
-                        } else {restartScene()}
-                    
-                    }
-                    if fb.contains(location){
-                        shareScore(scene: self)
-                    }
-                    if uploader.contains(location){
-                        if uploading == false {
-                            onUpload()
-                        } else {
-                            
+        }
+
+        for touch in touches{
+            let location = touch.location(in: self)
+        
+            if died == true{
+                if restart.contains(location){
+                
+    //                    uploader.removeFromParent()
+                    if uploading == true {
+                        if yes.contains(location){
+                            uploadScore()
                         }
+                        if no.contains(location){
+                            cancelUpload()
+                        }
+                    } else {restartScene()}
+                
+                }
+                if fb.contains(location){
+                    shareScore(scene: self)
+                }
+                if uploader.contains(location){
+                    if uploading == false {
+                        onUpload()
+                    } else {
+                        
                     }
                 }
+            }
         }
     }
         
