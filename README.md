@@ -1,16 +1,16 @@
 # Flappy-One
 
-**Flappy-One** is an iOS game app inspire by Flappy Bird and Nyancat.
+**Flappy-One** is an iOS game app inspire by Flappy Bird.
 
-* Player touch then screen to make Nyancat fly and avoid obstacles.
+* Player touch then screen to make Object fly and avoid obstacles.
 
 * Share your score to social media
 
-* view other people's score by location in map
+* view other people's score on rank board
 
 * One-click to take screenshot and share it to firends
 
-The App made by Apple Xcode using swift 3.
+The App made by Apple Xcode using swift 3 and Firebase.
 
 ## User Stories
 
@@ -19,11 +19,14 @@ The App made by Apple Xcode using swift 3.
 - [x] The game should stop when object hit the wall or the ground
 - [x] The score should add by one eveytime user pass a wall
 - [x] The user should be able enter the nickname
-- [x] The game should have sound effect
 - [x] The game should have introduction lunch image
-- [x] The user should be able enter the nickname
-- [x] The sever should record user's nickname and score
+- [x] The user should be able to upload their score with nick name
 - [x] The user should be able to share the score to social media (using API)
+
+## Optional Stories
+
+- [x] The user should be able to choose whether they want to upload the score or not
+- [x] The game should have sound effect and theme music
 
 
 ## UI Wireframe 01
