@@ -372,14 +372,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func displayScore(){
 
         ref = FIRDatabase.database().reference()
-        ref?.child("Score").queryOrdered(byChild: "score").queryLimited(toLast: 5).observe(.childAdded, with: { snapshot in
+        ref?.child("Score").queryOrdered(byChild: "score").queryLimited(toLast: 10).observe(.childAdded, with: { snapshot in
             let dict = snapshot.value as! [String: Any]
             let name = dict["name"] as? String
             let score = dict["score"] as? Int
 //            print("test \(name!) and \(score!)")
             let tmp = Score(player: name!, score: score!)
             self.scores.append(tmp)
-            if self.scores.count == 5 {
+            if self.scores.count == 10 {
                 self.scoreboard.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
                 self.scoreboard.frame = CGRect(x: self.frame.width / 2 - (300/2), y: (self.frame.height / 2) - (self.frame.height / 2.5) + 8, width: 300, height: 250)
                 self.scoreboard.backgroundColor = UIColor(white: 1, alpha: 0.5)
