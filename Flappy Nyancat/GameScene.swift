@@ -329,8 +329,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func insertBoard(new: Int) {
-        var swap: Int = 5
-        for index in 0...4 {
+        var swap: Int = 10
+        for index in 0...9 {
 //            print("Swap3: \(index)")
             if score >= self.scoreboard.items[index].score! {
                 swap = index
@@ -338,12 +338,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //                print("Swap1: \(swap)")
             }
         }
-        if swap != 5 {
-            if swap < 4 {
-                for index in 0...3-swap {
+        if swap != 10 {
+            if swap < 9 {
+                for index in 0...8-swap {
 //                    print("Swap2: \(3-index)")
-                    self.scoreboard.items[4-index].name = self.scoreboard.items[3-index].name
-                    self.scoreboard.items[4-index].score = self.scoreboard.items[3-index].score
+                    self.scoreboard.items[9-index].name = self.scoreboard.items[8-index].name
+                    self.scoreboard.items[9-index].score = self.scoreboard.items[8-index].score
                 }
             }
             self.scoreboard.items[swap].name = fillin.text
