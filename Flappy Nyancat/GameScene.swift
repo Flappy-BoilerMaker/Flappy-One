@@ -359,7 +359,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let post = ["name": fillin.text!,
                         "score": score] as [String : Any]
             ref?.child("Score").childByAutoId().setValue(post)
-            if score > self.scoreboard.items[4].score! {
+            if score > self.scoreboard.items[9].score! {
                 insertBoard(new: score)
             }
             cancelUpload()
